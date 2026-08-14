@@ -259,112 +259,21 @@ document.addEventListener("mousemove", (event) => {
 });
 
 
-// =========================
-// FLOATING BALLOONS
-// =========================
 
-const floatingBalloons =
-  document.getElementById("floatingBalloons");
-
-
-for (let i = 0; i < 18; i++) {
-
-  const balloon =
-    document.createElement("span");
-
-  balloon.className =
-    "floating-balloon";
-
-
-  // Posisi awal random
-
-  balloon.style.left =
-    `${Math.random() * 100}%`;
-
-
-  // Ukuran random
-
-  const size =
-    18 + Math.random() * 28;
-
-  balloon.style.setProperty(
-    "--size",
-    `${size}px`
-  );
-
-
-  // Durasi naik
-
-  const duration =
-    14 + Math.random() * 16;
-
-  balloon.style.setProperty(
-    "--duration",
-    `${duration}s`
-  );
-
-
-  // Delay random
-
-  balloon.style.setProperty(
-    "--delay",
-    `${Math.random() * -20}s`
-  );
-
-
-  // Gerakan horizontal
-
-  balloon.style.setProperty(
-    "--move-x-1",
-    `${-40 + Math.random() * 80}px`
-  );
-
-  balloon.style.setProperty(
-    "--move-x-2",
-    `${-80 + Math.random() * 160}px`
-  );
-
-  balloon.style.setProperty(
-    "--move-x-3",
-    `${-100 + Math.random() * 200}px`
-  );
-
-  balloon.style.setProperty(
-    "--move-x-4",
-    `${-140 + Math.random() * 280}px`
-  );
-
-
-  floatingBalloons.appendChild(
-    balloon
-  );
-
-}
-
-
-const birthdayMusic =
-  document.getElementById("birthdayMusic");
-
-if (
-  sessionStorage.getItem("birthdayMusicStarted")
-  === "true"
-) {
-
-  birthdayMusic.play()
-    .then(() => {
-
-      sessionStorage.removeItem(
-        "birthdayMusicStarted"
-      );
-
-    })
-    .catch(error => {
-
-      console.log(
-        "Music gagal dimainkan:",
-        error
-      );
-
-    });
-
-}
+window.addEventListener('DOMContentLoaded', async () => {
+  // Cek apakah user datang dari halaman start.html
+  if (sessionStorage.getItem("birthdayMusicStarted") === "true") {
+    
+    // Hapus jejaknya agar lagu tidak berputar ulang jika halaman di-refresh
+    sessionStorage.removeItem("birthdayMusicStarted");
+    
+    // Putar lagu menggunakan fungsi yang sudah kamu buat
+    try {
+      if (!playing) {
+        await toggleMusic();
+      }
+    } catch (error) {
+      console.log("Autoplay tertahan oleh sistem keamanan browser di halaman baru:", error);
+    }
+  }
+});

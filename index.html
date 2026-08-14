@@ -78,6 +78,8 @@
     transform .3s ease,
     box-shadow .3s ease,
     background .3s ease;
+
+  border-radius: 10px;
 }
 
 .start-button:hover {
@@ -276,7 +278,7 @@
   transition:
     transform .3s ease,
     box-shadow .3s ease;
-  border-radius: 12px;
+  
 }
 
 .start-button:hover {
@@ -673,26 +675,14 @@
 
     startButton.addEventListener(
       "click",
-      async function () {
-
+      function () {
         /*
-         * User sudah melakukan click,
-         * jadi browser mengizinkan
-         * audio dimainkan.
+         * Simpan status bahwa user sudah siap memutar musik.
          */
-
-        try {
-
-          await birthdayMusic.play();
-
-        } catch (error) {
-
-          console.log(
-            "Music gagal dimainkan:",
-            error
-          );
-
-        }
+        sessionStorage.setItem(
+          "birthdayMusicStarted",
+          "true"
+        );
 
 
         /*
@@ -709,8 +699,6 @@
         /*
          * Pindah ke halaman utama.
          */
-        
-        
 
         window.location.href =
           "main.html";

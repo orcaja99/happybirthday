@@ -275,7 +275,7 @@ button{cursor:pointer}
    FLOATING BALLOONS
    ========================= */
 
-.floating-balloons {
+/* .floating-balloons {
   position: fixed;
   inset: 0;
 
@@ -404,76 +404,3 @@ button{cursor:pointer}
     );
 }
 
-
-/* =========================
-   BALLOON MOVEMENT
-   ========================= */
-
-@keyframes balloon-rise {
-
-  0% {
-    transform:
-      translate(
-        0,
-        0
-      )
-      rotate(-4deg);
-
-    opacity: 0;
-  }
-
-
-  8% {
-    opacity: .45;
-  }
-
-
-  25% {
-    transform:
-      translate(
-        var(--move-x-1),
-        -25vh
-      )
-      rotate(5deg);
-  }
-
-
-  50% {
-    transform:
-      translate(
-        var(--move-x-2),
-        -50vh
-      )
-      rotate(-4deg);
-  }
-
-
-  75% {
-    transform:
-      translate(
-        var(--move-x-3),
-        -75vh
-      )
-      rotate(5deg);
-
-    opacity: .35;
-  }
-
-
-  92% {
-    opacity: .2;
-  }
-
-
-  100% {
-    transform:
-      translate(
-        var(--move-x-4),
-        -120vh
-      )
-      rotate(-5deg);
-
-    opacity: 0;
-  }
-
-}
