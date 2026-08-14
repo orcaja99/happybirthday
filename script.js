@@ -1,7 +1,7 @@
-const dateEl = document.getElementById("date");
-dateEl.textContent = new Intl.DateTimeFormat("en-US", {
-  month:"long", day:"numeric", year:"numeric"
-}).format(new Date());
+// const dateEl = document.getElementById("date");
+// dateEl.textContent = new Intl.DateTimeFormat("en-US", {
+//   month:"long", day:"numeric", year:"numeric"
+// }).format(new Date());
 
 const candles = [...document.querySelectorAll(".candle")];
 const wish = document.getElementById("wish");
