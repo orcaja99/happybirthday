@@ -59,12 +59,12 @@ button{cursor:pointer}
 }
 .photo-placeholder span{font:11px "DM Mono",monospace;letter-spacing:.25em;text-align:center;color:#fff8}
 .photo-note{display:block;text-align:right;font-size:18px;font-style:italic;margin-top:17px}
-.photo-note2{display:block;text-align:left;font-size:18px;font-style:italic;margin-top:17px}
+.photo-note{display:block;text-align:right;font-size:18px;font-style:italic;margin-top:17px}
 .gifts{text-align:center;padding:60px 0 90px;border-top:1px solid var(--line)}
 .gifts h2,.special h2{font-size:48px;font-weight:500;margin:0 0 15px}
 .ornament{font-size:14px;letter-spacing:4px;color:var(--accent);margin-bottom:40px}
 .gift-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.gift{border:1px solid var(--line);background:transparent;min-height:180px;padding:20px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;transition:.3s}
+.gift{border:1px solid var(--line);background:var(--cream);min-height:180px;padding:20px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;transition:.3s}
 .gift:hover{background:var(--cream);transform:translateY(-5px)}
 .gift-number{font:10px "DM Mono",monospace;color:var(--muted)}
 .gift-box{font-size:55px;font-family:serif;line-height:1}
@@ -88,7 +88,7 @@ button{cursor:pointer}
 .open-special{margin-top:30px;border:1px solid var(--ink);background:transparent;padding:13px 24px;font:10px "DM Mono",monospace;text-transform:uppercase;letter-spacing:.1em}
 .modal{position:fixed;inset:0;background:#25231f88;display:grid;place-items:center;padding:25px;opacity:0;pointer-events:none;transition:.3s;z-index:10}
 .modal.open{opacity:1;pointer-events:auto}
-.modal-card{position:relative;background:var(--paper);max-width:430px;width:100%;padding:60px 40px;text-align:center;box-shadow:0 20px 70px #0003}
+.modal-card{color: var(--ink);position:relative;background:var(--paper);max-width:430px;width:100%;padding:60px 40px;text-align:center;box-shadow:0 20px 70px #0003}
 .modal-card h2{font-size:50px;font-weight:500;margin:10px 0 20px}
 .modal-card p:not(.eyebrow){font-size:20px;line-height:1.5}
 .close{position:absolute;right:18px;top:12px;border:0;background:none;font-size:28px}

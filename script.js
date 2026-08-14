@@ -17,9 +17,9 @@ candles.forEach(c => c.addEventListener("click", () => {
 }));
 
 const gifts = {
-  1: ["A tiny reminder", "No matter how busy life gets, I hope you always remember how loved and appreciated you are."],
+  1: ["A tiny reminder", "No matter how tired life gets, I hope you always remember how loved and appreciated you are."],
   2: ["A little promise", "More laughs, more adventures, more memories. There are still so many beautiful days ahead."],
-  3: ["One more thing", "Today is yours. Make a wish, make a mess, eat the cake, and enjoy every second of it. ♡"]
+  3: ["One more thing", "Today is yours. Make a wish and enjoy every second of it. ♡"]
 };
 const modal = document.getElementById("giftModal");
 const modalTitle = document.getElementById("modalTitle");
