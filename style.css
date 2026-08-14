@@ -1,0 +1,191 @@
+:root{
+  --paper:#f4f0e7;
+  --ink:#25231f;
+  --muted:#777066;
+  --line:#cfc7b9;
+  --accent:#9d765d;
+  --cream:#ebe3d5;
+  --malam:#0a0a0f;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--malam);color:var(--paper);
+  font-family:"Cormorant Garamond",Georgia,serif;
+}
+button,a{font:inherit;color:inherit}
+button{cursor:pointer}
+.page{width:min(100%,720px);margin:auto;padding:0 34px;overflow:hidden}
+.topbar{
+  height:74px;display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--line);font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.08em;
+}
+.back{text-decoration:none;color:var(--muted)}
+.brand{position:absolute;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.22em}
+.music-toggle{border:0;background:none;font-size:20px;padding:4px}
+.hero{text-align:center;padding:90px 10px 55px}
+.eyebrow,.micro{
+  margin:0 0 17px;color:var(--muted);font:10px "DM Mono",monospace;
+  letter-spacing:.12em;text-transform:uppercase;
+}
+.hero h1{font-size:clamp(70px,15vw,120px);line-height:.72;font-weight:500;margin:0 0 54px;letter-spacing:-.055em}
+.hero h1 em{font-weight:400}
+.intro{max-width:520px;margin:auto;font-size:19px;line-height:1.55}
+.candles{text-align:center;padding:42px 0 105px}
+.candle-row{display:flex;justify-content:center;gap:24px;margin:28px 0 18px}
+.candle{
+  position:relative;width:36px;height:88px;border:0;background:transparent;padding:0;
+}
+.candle i{
+  display:block;width:19px;height:61px;margin:12px auto 0;
+  background:repeating-linear-gradient(90deg,#ded0b8 0 5px,#c8b69c 5px 7px);
+  border-radius:3px;
+}
+.flame{
+  position:absolute;left:50%;top:-5px;transform:translateX(-50%);
+  font-size:23px;color:#b78158;transition:.25s;
+}
+.candle:not(.lit) .flame{opacity:0;transform:translateX(-50%) translateY(8px) scale(.3)}
+.candle:not(.lit) i{opacity:.6}
+.wish{font-size:24px;font-style:italic;color:var(--muted);margin:0}
+.photo-section{padding:15px 0 100px}
+.photo-frame{position:relative;max-width:500px;margin:auto;transform:rotate(-1.2deg)}
+.photo-frame2{position:relative;max-width:500px;margin:auto;transform:rotate(1.2deg)}
+.photo-placeholder{
+  aspect-ratio:4/5;background:
+    linear-gradient(145deg,rgba(255,255,255,.25),transparent),
+    repeating-linear-gradient(45deg,#b8aa98 0 3px,#c8bba9 3px 8px);
+  display:grid;place-items:center;box-shadow:0 14px 35px #4b403015;
+}
+.photo-placeholder span{font:11px "DM Mono",monospace;letter-spacing:.25em;text-align:center;color:#fff8}
+.photo-note{display:block;text-align:right;font-size:18px;font-style:italic;margin-top:17px}
+.photo-note2{display:block;text-align:left;font-size:18px;font-style:italic;margin-top:17px}
+.gifts{text-align:center;padding:60px 0 90px;border-top:1px solid var(--line)}
+.gifts h2,.special h2{font-size:48px;font-weight:500;margin:0 0 15px}
+.ornament{font-size:14px;letter-spacing:4px;color:var(--accent);margin-bottom:40px}
+.gift-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.gift{border:1px solid var(--line);background:transparent;min-height:180px;padding:20px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;transition:.3s}
+.gift:hover{background:var(--cream);transform:translateY(-5px)}
+.gift-number{font:10px "DM Mono",monospace;color:var(--muted)}
+.gift-box{font-size:55px;font-family:serif;line-height:1}
+.gift small{font:9px "DM Mono",monospace;text-transform:uppercase;color:var(--muted)}
+.melody{text-align:center;padding:55px 0;border-top:1px solid var(--line)}
+.text-button{border:0;background:none;font-size:22px;font-style:italic}
+.text-button span{font-style:normal;margin-left:10px}
+.equalizer{height:30px;display:flex;align-items:center;justify-content:center;gap:4px;margin-top:20px;opacity:0}
+.equalizer.active{opacity:1}
+.equalizer b{width:2px;height:8px;background:var(--ink);animation:eq .7s infinite alternate}
+.equalizer b:nth-child(2){animation-delay:.1s}.equalizer b:nth-child(3){animation-delay:.2s}.equalizer b:nth-child(4){animation-delay:.35s}.equalizer b:nth-child(5){animation-delay:.15s}
+@keyframes eq{to{height:26px}}
+.love{text-align:center;padding:50px 0}
+.love-button{border:1px solid var(--ink);background:transparent;padding:15px 28px;border-radius:100px;display:inline-flex;gap:20px;font:11px "DM Mono",monospace;letter-spacing:.08em;transition:.3s}
+.love-button:hover,.love-button.sent{background:var(--ink);color:var(--paper)}
+#loveStatus{height:18px;font-style:italic;color:var(--muted);margin:12px 0 0}
+.footer{text-align:center;padding:100px 0 90px}
+.footer p{font-size:20px;font-style:italic;margin:0 0 5px}.footer strong{font-size:42px;font-weight:500}
+.dots{margin-top:35px;color:var(--muted);letter-spacing:12px}
+.special{text-align:center;border-top:1px solid var(--line);padding:100px 0 120px}
+.open-special{margin-top:30px;border:1px solid var(--ink);background:transparent;padding:13px 24px;font:10px "DM Mono",monospace;text-transform:uppercase;letter-spacing:.1em}
+.modal{position:fixed;inset:0;background:#25231f88;display:grid;place-items:center;padding:25px;opacity:0;pointer-events:none;transition:.3s;z-index:10}
+.modal.open{opacity:1;pointer-events:auto}
+.modal-card{position:relative;background:var(--paper);max-width:430px;width:100%;padding:60px 40px;text-align:center;box-shadow:0 20px 70px #0003}
+.modal-card h2{font-size:50px;font-weight:500;margin:10px 0 20px}
+.modal-card p:not(.eyebrow){font-size:20px;line-height:1.5}
+.close{position:absolute;right:18px;top:12px;border:0;background:none;font-size:28px}
+.modal-star{font-size:35px;color:var(--accent);margin-top:25px}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s,transform .8s}
+.reveal.visible{opacity:1;transform:none}
+@media(max-width:520px){
+  .page{padding:0 20px}.hero{padding-top:65px}.hero h1{font-size:75px;margin-bottom:42px}
+  .intro{font-size:17px}.candle-row{gap:9px}.candle{width:34px}.gift-grid{gap:7px}.gift{min-height:155px;padding:14px 7px}.gift-box{font-size:42px}.gifts h2,.special h2{font-size:39px}
+}
+
+
+
+/* =========================
+   FIREFLIES / KUNANG-KUNANG
+   ========================= */
+
+.fireflies {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.firefly {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #fff4a8;
+  box-shadow:
+    0 0 5px #fff4a8,
+    0 0 12px #ffe878,
+    0 0 22px #ffd84d;
+  opacity: 0;
+  animation:
+    firefly-float var(--duration) ease-in-out infinite,
+    firefly-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes firefly-float {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: var(--opacity);
+  }
+
+  30% {
+    transform: translate(
+      var(--move-x-1),
+      var(--move-y-1)
+    );
+  }
+
+  55% {
+    transform: translate(
+      var(--move-x-2),
+      var(--move-y-2)
+    );
+  }
+
+  80% {
+    transform: translate(
+      var(--move-x-3),
+      var(--move-y-3)
+    );
+  }
+
+  90% {
+    opacity: var(--opacity);
+  }
+
+  100% {
+    transform: translate(
+      var(--move-x-4),
+      var(--move-y-4)
+    );
+    opacity: 0;
+  }
+}
+
+@keyframes firefly-glow {
+  from {
+    box-shadow:
+      0 0 4px #fff4a8,
+      0 0 8px #ffe878,
+      0 0 14px #ffd84d;
+  }
+
+  to {
+    box-shadow:
+      0 0 7px #fff4a8,
+      0 0 16px #ffe878,
+      0 0 28px #ffd84d;
+  }
+}
