@@ -1,125 +1,727 @@
-<!doctype html>
-<html lang="id">
+# `start.html`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Happy Birthday — A Note for You</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+  <title>A Little Something</title>
+
+  <style>
+
+    /* =========================
+       RESET
+       ========================= */
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      overflow: hidden;
+
+      background: #0a0a0f;
+
+      font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+    }
+
+
+    /* =========================
+       START PAGE
+       ========================= */
+
+    .start-button {
+  position: relative;
+  z-index: 10;
+
+  border: none;
+
+  background: #f4f0e7;
+  color: #0a0a0f;
+
+  width: 230px;
+  height: 75px;
+
+  padding: 0;
+
+  font-family:
+    "DM Mono",
+    "Courier New",
+    monospace;
+
+  font-size: 14px;
+
+  letter-spacing: .1em;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, .3);
+
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease,
+    background .3s ease;
+}
+
+.start-button:hover {
+  transform: translateY(-4px);
+
+  background: #ffffff;
+
+  box-shadow:
+    0 18px 45px rgba(
+      255,
+      244,
+      168,
+      .15
+    );
+}
+
+.start-button:active {
+  transform: translateY(-1px) scale(.97);
+}
+
+    /* =========================
+       FIREFLIES CONTAINER
+       ========================= */
+
+    .fireflies {
+      position: absolute;
+
+      inset: 0;
+
+      overflow: hidden;
+
+      pointer-events: none;
+
+      z-index: 1;
+    }
+
+
+    /* =========================
+       FIREFLY
+       ========================= */
+
+    .firefly {
+      position: absolute;
+
+      width: 4px;
+      height: 4px;
+
+      border-radius: 50%;
+
+      background: #fff4a8;
+
+      box-shadow:
+        0 0 5px #fff4a8,
+        0 0 12px #ffe878,
+        0 0 22px #ffd84d;
+
+      opacity: 0;
+
+      animation:
+        firefly-float
+        var(--duration)
+        ease-in-out
+        infinite,
+
+        firefly-glow
+        2s
+        ease-in-out
+        infinite
+        alternate;
+    }
+
+
+    /* =========================
+       FIREFLY MOVEMENT
+       ========================= */
+
+    @keyframes firefly-float {
+
+      0% {
+        transform:
+          translate(0, 0);
+
+        opacity: 0;
+      }
+
+      10% {
+        opacity: var(--opacity);
+      }
+
+      30% {
+        transform:
+          translate(
+            var(--move-x-1),
+            var(--move-y-1)
+          );
+      }
+
+      55% {
+        transform:
+          translate(
+            var(--move-x-2),
+            var(--move-y-2)
+          );
+      }
+
+      80% {
+        transform:
+          translate(
+            var(--move-x-3),
+            var(--move-y-3)
+          );
+      }
+
+      90% {
+        opacity: var(--opacity);
+      }
+
+      100% {
+        transform:
+          translate(
+            var(--move-x-4),
+            var(--move-y-4)
+          );
+
+        opacity: 0;
+      }
+    }
+
+
+    /* =========================
+       FIREFLY GLOW
+       ========================= */
+
+    @keyframes firefly-glow {
+
+      from {
+        box-shadow:
+          0 0 4px #fff4a8,
+          0 0 8px #ffe878,
+          0 0 14px #ffd84d;
+      }
+
+      to {
+        box-shadow:
+          0 0 7px #fff4a8,
+          0 0 16px #ffe878,
+          0 0 28px #ffd84d;
+      }
+    }
+
+
+    /* =========================
+       CENTER CONTENT
+       ========================= */
+
+    .content {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 10;
+}
+
+    /* =========================
+       BUTTON
+       ========================= */
+
+    .start-button {
+  position: relative;
+  z-index: 10;
+
+  width: 230px;
+  height: 75px;
+
+  border: none;
+
+  background: #f4f0e7;
+  color: #0a0a0f;
+
+  font-family:
+    "DM Mono",
+    "Courier New",
+    monospace;
+
+  font-size: 14px;
+  letter-spacing: .1em;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, .3);
+
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
+  border-radius: 12px;
+}
+
+.start-button:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 18px 45px rgba(
+      255,
+      244,
+      168,
+      .15
+    );
+}
+
+.start-button:active {
+  transform: scale(.97);
+}
+
+
+    .balloon {
+  position: absolute;
+
+  width: 58px;
+  height: 72px;
+
+  border-radius: 50% 50% 48% 48%;
+
+  z-index: 5;
+
+  animation:
+    balloon-float
+    4s
+    ease-in-out
+    infinite;
+}
+
+.balloon-left {
+  left: calc(50% - 140px);
+  top: calc(50% - 145px);
+
+  background:
+    radial-gradient(
+      circle at 35% 25%,
+      #ffffff88 0 5%,
+      transparent 6%
+    ),
+    linear-gradient(
+      135deg,
+      #a87968,
+      #7d5548
+    );
+
+  animation-delay: -.8s;
+}
+
+.balloon-right {
+  left: calc(50% + 77px);
+  top: calc(50% - 145px);
+
+  background:
+    radial-gradient(
+      circle at 35% 25%,
+      #ffffff88 0 5%,
+      transparent 6%
+    ),
+    linear-gradient(
+      135deg,
+      #b99a79,
+      #8e7258
+    );
+
+  animation-delay: -2s;
+}
+
+/* kanan */
+
+.balloon-right {
+  left: calc(50% + 77px);
+  top: calc(50% - 145px);
+
+  background:
+    radial-gradient(
+      circle at 35% 25%,
+      #ffffff88 0 5%,
+      transparent 6%
+    ),
+    linear-gradient(
+      135deg,
+      #b99a79,
+      #8e7258
+    );
+
+  animation-delay: -2s;
+}
+
+
+/* ujung balon */
+
+.balloon::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  bottom: -7px;
+
+  transform: translateX(-50%);
+
+  width: 10px;
+  height: 10px;
+
+  background: inherit;
+
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    50% 100%
+  );
+}
+
+
+/* tali */
+
+.balloon::before {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  top: 100%;
+
+  width: 1px;
+  height: 90px;
+
+  background: #f4f0e766;
+
+  transform-origin: top;
+
+  transform:
+    rotate(
+      var(--string-angle, 0deg)
+    );
+}
+
+
+/* animasi melayang */
+
+@keyframes balloon-float {
+
+  0% {
+    transform:
+      translateY(0)
+      rotate(-3deg);
+  }
+
+  25% {
+    transform:
+      translateY(-12px)
+      rotate(2deg);
+  }
+
+  50% {
+    transform:
+      translateY(-20px)
+      rotate(-2deg);
+  }
+
+  75% {
+    transform:
+      translateY(-9px)
+      rotate(3deg);
+  }
+
+  100% {
+    transform:
+      translateY(0)
+      rotate(-3deg);
+  }
+}
+
+
+    /* =========================
+       MOBILE
+       ========================= */
+
+    @media (max-width: 520px) {
+
+      .start-button {
+
+        min-width: 140px;
+
+        padding:
+          15px
+          30px;
+
+        font-size: 10px;
+      }
+
+    }
+
+  </style>
 </head>
+
+
 <body>
-  <audio id="birthdayMusic" src="music/birthday.mp3" preload="auto" autoplay loop></audio>
-  <div class="fireflies" id="fireflies"></div>
-  <main class="page">
-    <header class="topbar">
-      <span class="brand">From your once beloved</span>
-      <button class="music-toggle" id="musicToggle" aria-label="Toggle music">♪</button>
-    </header>
 
-    <section class="hero reveal">
-      <p class="eyebrow">A note for you <span id="date"></span></p>
-      <h1>Happy<br><em>Birthday</em></h1>
-      <p class="intro">
-        Selamat ulang tahun! 🎂✨ Di hari spesial ini, aku cuma mau bilang
-        terima kasih sudah menjadi bagian dari perjalananku. Semoga tahun ini
-        membawa banyak kebahagiaan, tawa, dan semua hal baik yang kamu impikan.
-        Tetaplah jadi pribadi yang luar biasa dan selalu ceria ya.
-      </p>
-    </section>
 
-    <section class="candles reveal">
-      <p class="micro">Buat Permohonan dan Tekan Setiap Lilin</p>
-      <div class="candle-row" id="candles">
-        <button class="candle lit" aria-label="Candle 1"><span class="flame">✦</span><i></i></button>
-        <button class="candle lit" aria-label="Candle 2"><span class="flame">✦</span><i></i></button>
-        <button class="candle lit" aria-label="Candle 3"><span class="flame">✦</span><i></i></button>
-        <button class="candle lit" aria-label="Candle 4"><span class="flame">✦</span><i></i></button>
-        <button class="candle lit" aria-label="Candle 5"><span class="flame">✦</span><i></i></button>
-      </div>
-      <p class="wish" id="wish">Make a wish.</p>
-    </section>
+  <!-- =========================
+       START PAGE
+       ========================= -->
 
-    <section class="photo-section reveal">
-      <div class="photo-frame">
-        <div class="photo-placeholder">
-          <span>YOUR<br>PHOTO</span>
-        </div>
-        <span class="photo-note">us, that one summer ✿</span>
-      </div>
-    </section>
+  <div class="start-page">
 
-    <section class="photo-section reveal">
-      <div class="photo-frame2">
-        <div class="photo-placeholder">
-          <span>YOUR<br>PHOTO</span>
-        </div>
-        <span class="photo-note2">us, that one summer ✿</span>
-      </div>
-    </section>
 
-    <section class="gifts reveal">
-      <p class="eyebrow">✦ a little something</p>
-      <h2>three small gifts</h2>
-      <div class="ornament">✿✦★✧✶✦★✿✦★✧✶✦★✿</div>
+    <!-- FIREFLIES -->
 
-      <div class="gift-grid">
-        <button class="gift" data-gift="1">
-          <span class="gift-number">01</span>
-          <span class="gift-box">🎀</span>
-          <small>tap to open</small>
-        </button>
-        <button class="gift" data-gift="2">
-          <span class="gift-number">02</span>
-          <span class="gift-box">🎀</span>
-          <small>tap to open</small>
-        </button>
-        <button class="gift" data-gift="3">
-          <span class="gift-number">03</span>
-          <span class="gift-box">🎀</span>
-          <small>tap to open</small>
-        </button>
-      </div>
-    </section>
-
-    <section class="melody reveal">
-      <button id="melodyButton" class="text-button">play the melody <span>♪</span></button>
-      <div class="equalizer" id="equalizer">
-        <b></b><b></b><b></b><b></b><b></b>
-      </div>
-    </section>
-
-    <section class="love reveal">
-      <button id="loveButton" class="love-button">
-        <span>Send Love</span><span>♡</span>
-      </button>
-      <p id="loveStatus"></p>
-    </section>
-
-    <footer class="footer reveal">
-      <p>Dari,</p>
-      <strong>Fitrah</strong>
-      <div class="dots">· · ·</div>
-    </footer>
-
-    <section class="special reveal">
-      <p class="eyebrow">✦ one last thing</p>
-      <h2>Kado Spesial untuk Dinda 🎁</h2>
-      <button class="open-special" id="specialButton">Buka kadonya</button>
-    </section>
-  </main>
-
-  <div class="modal" id="giftModal" aria-hidden="true">
-    <div class="modal-card">
-      <button class="close" id="closeModal">×</button>
-      <p class="eyebrow" id="modalEyebrow">A little gift</p>
-      <h2 id="modalTitle">For you.</h2>
-      <p id="modalText"></p>
-      <div class="modal-star">✦</div>
+    <div
+      class="fireflies"
+      id="fireflies">
     </div>
+
+
+    <!-- BUTTON -->
+
+    <div class="content">
+
+  <div class="balloon balloon-left"></div>
+
+  <div class="balloon balloon-right"></div>
+
+  <button
+    class="start-button"
+    id="startButton">
+    Pencet aku
+  </button>
+
+</div>
+
+
   </div>
 
-  <script src="script.js"></script>
+
+  <!-- =========================
+       MUSIC
+       ========================= -->
+
+  <audio
+    id="birthdayMusic"
+    src="music/birthday.mp3"
+    preload="auto">
+  </audio>
+
+
+  <script>
+
+    /* =========================
+       CREATE FIREFLIES
+       ========================= */
+
+    const fireflies =
+      document.getElementById(
+        "fireflies"
+      );
+
+
+    for (let i = 0; i < 60; i++) {
+
+      const firefly =
+        document.createElement(
+          "span"
+        );
+
+
+      firefly.className =
+        "firefly";
+
+
+      /* Position */
+
+      firefly.style.left =
+        `${Math.random() * 100}%`;
+
+      firefly.style.top =
+        `${Math.random() * 100}%`;
+
+
+      /* Animation duration */
+
+      firefly.style.setProperty(
+        "--duration",
+        `${8 + Math.random() * 12}s`
+      );
+
+
+      /* Opacity */
+
+      firefly.style.setProperty(
+        "--opacity",
+        `${0.35 + Math.random() * 0.65}`
+      );
+
+
+      /* Movement 1 */
+
+      firefly.style.setProperty(
+        "--move-x-1",
+        `${-50 + Math.random() * 100}px`
+      );
+
+      firefly.style.setProperty(
+        "--move-y-1",
+        `${-50 + Math.random() * 100}px`
+      );
+
+
+      /* Movement 2 */
+
+      firefly.style.setProperty(
+        "--move-x-2",
+        `${-100 + Math.random() * 200}px`
+      );
+
+      firefly.style.setProperty(
+        "--move-y-2",
+        `${-100 + Math.random() * 200}px`
+      );
+
+
+      /* Movement 3 */
+
+      firefly.style.setProperty(
+        "--move-x-3",
+        `${-70 + Math.random() * 140}px`
+      );
+
+      firefly.style.setProperty(
+        "--move-y-3",
+        `${-100 + Math.random() * 200}px`
+      );
+
+
+      /* Movement 4 */
+
+      firefly.style.setProperty(
+        "--move-x-4",
+        `${-120 + Math.random() * 240}px`
+      );
+
+      firefly.style.setProperty(
+        "--move-y-4",
+        `${-120 + Math.random() * 240}px`
+      );
+
+
+      /* Random starting point */
+
+      firefly.style.animationDelay =
+        `${Math.random() * -15}s`;
+
+
+      /* Random size */
+
+      const size =
+        2 + Math.random() * 4;
+
+      firefly.style.width =
+        `${size}px`;
+
+      firefly.style.height =
+        `${size}px`;
+
+
+      fireflies.appendChild(
+        firefly
+      );
+    }
+
+
+    /* =========================
+       START BUTTON
+       ========================= */
+
+    const startButton =
+      document.getElementById(
+        "startButton"
+      );
+
+
+    const birthdayMusic =
+      document.getElementById(
+        "birthdayMusic"
+      );
+
+
+    startButton.addEventListener(
+      "click",
+      async function () {
+
+        /*
+         * User sudah melakukan click,
+         * jadi browser mengizinkan
+         * audio dimainkan.
+         */
+
+        try {
+
+          await birthdayMusic.play();
+
+        } catch (error) {
+
+          console.log(
+            "Music gagal dimainkan:",
+            error
+          );
+
+        }
+
+
+        /*
+         * Simpan status bahwa musik
+         * sudah dimulai.
+         */
+
+        sessionStorage.setItem(
+          "birthdayMusicStarted",
+          "true"
+        );
+
+
+        /*
+         * Pindah ke halaman utama.
+         */
+        
+        
+
+        window.location.href =
+          "main.html";
+
+      }
+    );
+
+  </script>
+
+
 </body>
+
 </html>
+```

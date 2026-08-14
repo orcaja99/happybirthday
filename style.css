@@ -271,3 +271,209 @@ button{cursor:pointer}
   }
 }
 
+/* =========================
+   FLOATING BALLOONS
+   ========================= */
+
+.floating-balloons {
+  position: fixed;
+  inset: 0;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  z-index: 0;
+}
+
+
+.floating-balloon {
+  position: absolute;
+
+  bottom: -100px;
+
+  width: var(--size);
+  height: calc(var(--size) * 1.25);
+
+  border-radius:
+    50% 50%
+    48% 48%;
+
+  opacity: 0;
+
+  animation:
+    balloon-rise
+    var(--duration)
+    linear
+    infinite;
+
+  animation-delay: var(--delay);
+}
+
+
+/* ujung kecil balon */
+
+.floating-balloon::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  bottom: -6px;
+
+  transform: translateX(-50%);
+
+  width: 8px;
+  height: 8px;
+
+  background: inherit;
+
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    50% 100%
+  );
+}
+
+
+/* tali balon */
+
+.floating-balloon::before {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  top: 100%;
+
+  width: 1px;
+  height: 65px;
+
+  background: rgba(
+    244,
+    240,
+    231,
+    .25
+  );
+}
+
+
+/* =========================
+   BALLOON COLORS
+   ========================= */
+
+.floating-balloon:nth-child(3n) {
+  background:
+    radial-gradient(
+      circle at 35% 25%,
+      #ffffff55 0 5%,
+      transparent 6%
+    ),
+    linear-gradient(
+      135deg,
+      #a87968,
+      #765047
+    );
+}
+
+.floating-balloon:nth-child(3n + 1) {
+  background:
+    radial-gradient(
+      circle at 35% 25%,
+      #ffffff55 0 5%,
+      transparent 6%
+    ),
+    linear-gradient(
+      135deg,
+      #b99a79,
+      #80694f
+    );
+}
+
+.floating-balloon:nth-child(3n + 2) {
+  background:
+    radial-gradient(
+      circle at 35% 25%,
+      #ffffff55 0 5%,
+      transparent 6%
+    ),
+    linear-gradient(
+      135deg,
+      #9c8177,
+      #654f4b
+    );
+}
+
+
+/* =========================
+   BALLOON MOVEMENT
+   ========================= */
+
+@keyframes balloon-rise {
+
+  0% {
+    transform:
+      translate(
+        0,
+        0
+      )
+      rotate(-4deg);
+
+    opacity: 0;
+  }
+
+
+  8% {
+    opacity: .45;
+  }
+
+
+  25% {
+    transform:
+      translate(
+        var(--move-x-1),
+        -25vh
+      )
+      rotate(5deg);
+  }
+
+
+  50% {
+    transform:
+      translate(
+        var(--move-x-2),
+        -50vh
+      )
+      rotate(-4deg);
+  }
+
+
+  75% {
+    transform:
+      translate(
+        var(--move-x-3),
+        -75vh
+      )
+      rotate(5deg);
+
+    opacity: .35;
+  }
+
+
+  92% {
+    opacity: .2;
+  }
+
+
+  100% {
+    transform:
+      translate(
+        var(--move-x-4),
+        -120vh
+      )
+      rotate(-5deg);
+
+    opacity: 0;
+  }
+
+}

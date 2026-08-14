@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Happy Birthday — A Note for You</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <audio autoplay id="birthdayMusic" src="music/birthday.mp3" preload="auto" loop></audio>
+  <div class="fireflies" id="fireflies"></div>
+  <div class="floating-balloons" id="floatingBalloons"></div>
+  <main class="page">
+    <header class="topbar">
+      <span class="brand">From your once beloved</span>
+      <button class="music-toggle" id="musicToggle" aria-label="Toggle music">♪</button>
+    </header>
+
+    <section class="hero reveal">
+      <p class="eyebrow">A note for you <span id="date"></span></p>
+      <h1>Happy<br><em>Birthday</em></h1>
+      <p class="intro">
+        Selamat ulang tahun! 🎂✨ Di hari spesial ini, aku cuma mau bilang
+        terima kasih sudah menjadi bagian dari perjalananku. Semoga tahun ini
+        membawa banyak kebahagiaan, tawa, dan semua hal baik yang kamu impikan.
+        Tetaplah jadi pribadi yang luar biasa dan selalu ceria ya.
+      </p>
+    </section>
+
+    <section class="candles reveal">
+      <p class="micro">Buat Permohonan dan Tekan Setiap Lilin</p>
+      <div class="candle-row" id="candles">
+        <button class="candle lit" aria-label="Candle 1"><span class="flame">✦</span><i></i></button>
+        <button class="candle lit" aria-label="Candle 2"><span class="flame">✦</span><i></i></button>
+        <button class="candle lit" aria-label="Candle 3"><span class="flame">✦</span><i></i></button>
+        <button class="candle lit" aria-label="Candle 4"><span class="flame">✦</span><i></i></button>
+        <button class="candle lit" aria-label="Candle 5"><span class="flame">✦</span><i></i></button>
+      </div>
+      <p class="wish" id="wish">Make a wish.</p>
+    </section>
+
+    <section class="photo-section reveal">
+      <div class="photo-frame">
+        <div class="photo-placeholder">
+          <span>YOUR<br>PHOTO</span>
+        </div>
+        <span class="photo-note">us, that one summer ✿</span>
+      </div>
+    </section>
+
+    <section class="photo-section reveal">
+      <div class="photo-frame2">
+        <div class="photo-placeholder">
+          <span>YOUR<br>PHOTO</span>
+        </div>
+        <span class="photo-note2">us, that one summer ✿</span>
+      </div>
+    </section>
+
+    <section class="gifts reveal">
+      <p class="eyebrow">✦ a little something</p>
+      <h2>three small gifts</h2>
+      <div class="ornament">✿✦★✧✶✦★✿✦★✧✶✦★✿</div>
+
+      <div class="gift-grid">
+        <button class="gift" data-gift="1">
+          <span class="gift-number">01</span>
+          <span class="gift-box">🎀</span>
+          <small>tap to open</small>
+        </button>
+        <button class="gift" data-gift="2">
+          <span class="gift-number">02</span>
+          <span class="gift-box">🎀</span>
+          <small>tap to open</small>
+        </button>
+        <button class="gift" data-gift="3">
+          <span class="gift-number">03</span>
+          <span class="gift-box">🎀</span>
+          <small>tap to open</small>
+        </button>
+      </div>
+    </section>
+
+    <section class="melody reveal">
+      <button id="melodyButton" class="text-button">play the melody <span>♪</span></button>
+      <div class="equalizer" id="equalizer">
+        <b></b><b></b><b></b><b></b><b></b>
+      </div>
+    </section>
+
+    <section class="love reveal">
+      <button id="loveButton" class="love-button">
+        <span>Send Love</span><span>♡</span>
+      </button>
+      <p id="loveStatus"></p>
+    </section>
+
+    <footer class="footer reveal">
+      <p>Dari,</p>
+      <strong>Fitrah</strong>
+      <div class="dots">· · ·</div>
+    </footer>
+
+    <section class="special reveal">
+      <p class="eyebrow">✦ one last thing</p>
+      <h2>Kado Spesial untuk Dinda 🎁</h2>
+      <button class="open-special" id="specialButton">Buka kadonya</button>
+    </section>
+  </main>
+
+  <div class="modal" id="giftModal" aria-hidden="true">
+    <div class="modal-card">
+      <button class="close" id="closeModal">×</button>
+      <p class="eyebrow" id="modalEyebrow">A little gift</p>
+      <h2 id="modalTitle">For you.</h2>
+      <p id="modalText"></p>
+      <div class="modal-star">✦</div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
