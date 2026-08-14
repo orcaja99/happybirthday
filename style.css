@@ -28,8 +28,8 @@ button{cursor:pointer}
   margin:0 0 17px;color:var(--muted);font:10px "DM Mono",monospace;
   letter-spacing:.12em;text-transform:uppercase;
 }
-.hero h1{font-size:clamp(70px,15vw,120px);line-height:.72;font-weight:500;margin:0 0 54px;letter-spacing:-.055em}
-.hero h1 em{font-weight:400}
+.hero h1{font-size:clamp(70px,15vw,120px);line-height:1.1;font-weight:500;margin:0 0 54px;letter-spacing:-.055em}
+.hero h1 em{font-weight:400;letter-spacing:-.055em}
 .intro{max-width:520px;margin:auto;font-size:19px;line-height:1.55}
 .candles{text-align:center;padding:42px 0 105px}
 .candle-row{display:flex;justify-content:center;gap:24px;margin:28px 0 18px}
