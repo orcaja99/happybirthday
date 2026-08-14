@@ -39,26 +39,39 @@ modal.addEventListener("click", e => { if(e.target === modal) document.getElemen
 
 const melodyButton = document.getElementById("melodyButton");
 const equalizer = document.getElementById("equalizer");
-let audioCtx, playing = false, timer;
-function playMelody(){
-  if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  const notes = [261.63,329.63,392,329.63,293.66,349.23,440,392];
-  notes.forEach((freq,i)=>{
-    const o=audioCtx.createOscillator(), gain=audioCtx.createGain();
-    o.type="sine"; o.frequency.value=freq;
-    gain.gain.setValueAtTime(.0001,audioCtx.currentTime+i*.23);
-    gain.gain.exponentialRampToValueAtTime(.08,audioCtx.currentTime+i*.23+.02);
-    gain.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+i*.23+.2);
-    o.connect(gain).connect(audioCtx.destination); o.start(audioCtx.currentTime+i*.23); o.stop(audioCtx.currentTime+i*.23+.21);
-  });
-}
+const birthdayMusic = document.getElementById("birthdayMusic");
+
+let playing = false;
+
 melodyButton.onclick = () => {
-  playing = !playing;
-  equalizer.classList.toggle("active", playing);
-  melodyButton.innerHTML = playing ? "pause the melody <span>Ⅱ</span>" : "play the melody <span>♪</span>";
-  if(playing){ playMelody(); timer=setInterval(playMelody,1900); }
-  else clearInterval(timer);
+    if (playing) {
+        birthdayMusic.pause();
+
+        melodyButton.innerHTML =
+            'play the melody <span>♪</span>';
+
+        equalizer.classList.remove("active");
+        playing = false;
+    } else {
+        birthdayMusic.play();
+
+        melodyButton.innerHTML =
+            'pause the melody <span>Ⅱ</span>';
+
+        equalizer.classList.add("active");
+        playing = true;
+    }
 };
+
+birthdayMusic.addEventListener("ended", () => {
+    playing = false;
+
+    melodyButton.innerHTML =
+        'play the melody <span>♪</span>';
+
+    equalizer.classList.remove("active");
+});
+
 
 const loveButton = document.getElementById("loveButton");
 const loveStatus = document.getElementById("loveStatus");
