@@ -214,3 +214,46 @@ for (let i = 0; i < 60; i++) {
 
   fireflies.appendChild(firefly);
 }
+
+
+let lastSparkleX = 0;
+let lastSparkleY = 0;
+
+document.addEventListener("mousemove", (event) => {
+
+  const x = event.clientX;
+  const y = event.clientY;
+
+  // Jangan terlalu sering membuat sparkle
+  const distance = Math.hypot(
+    x - lastSparkleX,
+    y - lastSparkleY
+  );
+
+  if (distance < 25) {
+    return;
+  }
+
+  lastSparkleX = x;
+  lastSparkleY = y;
+
+  const sparkle = document.createElement("span");
+
+  sparkle.className = "mouse-sparkle";
+
+  sparkle.style.left = `${x}px`;
+  sparkle.style.top = `${y}px`;
+
+  // Ukuran random
+  const size = 0.5 + Math.random() * 1;
+
+  sparkle.style.transform =
+    `translate(-50%, -50%) scale(${size})`;
+
+  document.body.appendChild(sparkle);
+
+
+  setTimeout(() => {
+    sparkle.remove();
+  }, 700);
+});
