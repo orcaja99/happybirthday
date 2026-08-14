@@ -275,7 +275,7 @@ button{cursor:pointer}
    FLOATING BALLOONS
    ========================= */
 
-/* .floating-balloons {
+.floating-balloons {
   position: fixed;
   inset: 0;
 
@@ -283,17 +283,18 @@ button{cursor:pointer}
 
   pointer-events: none;
 
-  z-index: 0;
+  z-index: -100;
 }
 
 
 .floating-balloon {
   position: absolute;
 
-  bottom: -100px;
+  bottom: -140px;
+  left: var(--left, 50%);
 
-  width: var(--size);
-  height: calc(var(--size) * 1.25);
+  width: var(--size, 46px);
+  height: calc(var(--size, 46px) * 1.25);
 
   border-radius:
     50% 50%
@@ -303,11 +304,11 @@ button{cursor:pointer}
 
   animation:
     balloon-rise
-    var(--duration)
-    linear
+    var(--duration, 14s)
+    ease-in
     infinite;
 
-  animation-delay: var(--delay);
+  animation-delay: var(--delay, 0s);
 }
 
 
@@ -355,6 +356,54 @@ button{cursor:pointer}
     231,
     .25
   );
+}
+
+
+/* pergerakan naik + goyang */
+
+@keyframes balloon-rise {
+
+  0% {
+    transform:
+      translate(0, 0)
+      rotate(-3deg);
+
+    opacity: 0;
+  }
+
+  8% {
+    opacity: var(--opacity, .85);
+  }
+
+  25% {
+    transform:
+      translate(var(--drift-1, 18px), -28vh)
+      rotate(3deg);
+  }
+
+  50% {
+    transform:
+      translate(var(--drift-2, -14px), -55vh)
+      rotate(-3deg);
+  }
+
+  75% {
+    transform:
+      translate(var(--drift-3, 16px), -82vh)
+      rotate(2deg);
+  }
+
+  92% {
+    opacity: var(--opacity, .85);
+  }
+
+  100% {
+    transform:
+      translate(var(--drift-4, -10px), -118vh)
+      rotate(-2deg);
+
+    opacity: 0;
+  }
 }
 
 

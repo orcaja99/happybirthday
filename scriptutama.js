@@ -216,78 +216,6 @@ for (let i = 0; i < 60; i++) {
 }
 
 
-// =========================
-// FLOATING BALLOONS (terbang ke atas, random)
-// =========================
-
-const floatingBalloons = document.getElementById("floatingBalloons");
-
-if (floatingBalloons) {
-  const BALLOON_COUNT = 10;
-
-  for (let i = 0; i < BALLOON_COUNT; i++) {
-    const balloon = document.createElement("span");
-
-    balloon.className = "floating-balloon";
-
-    /* Posisi horizontal awal, random di seluruh lebar layar */
-    balloon.style.setProperty(
-      "--left",
-      `${Math.random() * 100}%`
-    );
-
-    /* Ukuran balon random */
-    const size = 34 + Math.random() * 30;
-
-    balloon.style.setProperty(
-      "--size",
-      `${size}px`
-    );
-
-    /* Durasi terbang, tiap balon beda kecepatan */
-    balloon.style.setProperty(
-      "--duration",
-      `${12 + Math.random() * 10}s`
-    );
-
-    /* Delay awal supaya tidak muncul bersamaan */
-    balloon.style.setProperty(
-      "--delay",
-      `${Math.random() * -20}s`
-    );
-
-    /* Opacity max saat melayang */
-    balloon.style.setProperty(
-      "--opacity",
-      `${0.55 + Math.random() * 0.4}`
-    );
-
-    /* Goyangan kiri-kanan selagi naik */
-    balloon.style.setProperty(
-      "--drift-1",
-      `${-30 + Math.random() * 60}px`
-    );
-
-    balloon.style.setProperty(
-      "--drift-2",
-      `${-40 + Math.random() * 80}px`
-    );
-
-    balloon.style.setProperty(
-      "--drift-3",
-      `${-30 + Math.random() * 60}px`
-    );
-
-    balloon.style.setProperty(
-      "--drift-4",
-      `${-45 + Math.random() * 90}px`
-    );
-
-    floatingBalloons.appendChild(balloon);
-  }
-}
-
-
 let lastSparkleX = 0;
 let lastSparkleY = 0;
 
@@ -349,3 +277,4 @@ window.addEventListener('DOMContentLoaded', async () => {
     }
   }
 });
+
