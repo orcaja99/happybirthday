@@ -37,40 +37,8 @@ document.getElementById("closeModal").onclick = () => {
 };
 modal.addEventListener("click", e => { if(e.target === modal) document.getElementById("closeModal").click(); });
 
-const melodyButton = document.getElementById("melodyButton");
-const equalizer = document.getElementById("equalizer");
-const birthdayMusic = document.getElementById("birthdayMusic");
 
-let playing = false;
 
-melodyButton.onclick = () => {
-    if (playing) {
-        birthdayMusic.pause();
-
-        melodyButton.innerHTML =
-            'play the melody <span>♪</span>';
-
-        equalizer.classList.remove("active");
-        playing = false;
-    } else {
-        birthdayMusic.play();
-
-        melodyButton.innerHTML =
-            'pause the melody <span>Ⅱ</span>';
-
-        equalizer.classList.add("active");
-        playing = true;
-    }
-};
-
-birthdayMusic.addEventListener("ended", () => {
-    playing = false;
-
-    melodyButton.innerHTML =
-        'play the melody <span>♪</span>';
-
-    equalizer.classList.remove("active");
-});
 
 
 const loveButton = document.getElementById("loveButton");
@@ -91,9 +59,83 @@ document.querySelectorAll(".reveal").forEach((el,i) => {
   observer.observe(el);
 });
 
-document.getElementById("musicToggle").onclick = () => {
-  melodyButton.scrollIntoView({behavior:"smooth",block:"center"});
-};
+// =========================
+// MUSIC
+// =========================
+
+const birthdayMusic = document.getElementById("birthdayMusic");
+const musicToggle = document.getElementById("musicToggle");
+const melodyButton = document.getElementById("melodyButton");
+const equalizer = document.getElementById("equalizer");
+
+let playing = false;
+
+async function toggleMusic() {
+  try {
+    if (playing) {
+      birthdayMusic.pause();
+
+      playing = false;
+
+      musicToggle.textContent = "♪";
+
+      if (melodyButton) {
+        melodyButton.innerHTML =
+          'play the melody <span>♪</span>';
+      }
+
+      if (equalizer) {
+        equalizer.classList.remove("active");
+      }
+
+    } else {
+      await birthdayMusic.play();
+
+      playing = true;
+
+      musicToggle.textContent = "Ⅱ";
+
+      if (melodyButton) {
+        melodyButton.innerHTML =
+          'pause the melody <span>Ⅱ</span>';
+      }
+
+      if (equalizer) {
+        equalizer.classList.add("active");
+      }
+    }
+
+  } catch (error) {
+    console.error("Music gagal dimainkan:", error);
+  }
+}
+
+
+// Tombol ♪ di header
+musicToggle.addEventListener("click", toggleMusic);
+
+
+// Tombol "play the melody"
+if (melodyButton) {
+  melodyButton.addEventListener("click", toggleMusic);
+}
+
+
+// Kalau lagu selesai
+birthdayMusic.addEventListener("ended", () => {
+  playing = false;
+
+  musicToggle.textContent = "♪";
+
+  if (melodyButton) {
+    melodyButton.innerHTML =
+      'play the melody <span>♪</span>';
+  }
+
+  if (equalizer) {
+    equalizer.classList.remove("active");
+  }
+});
 
 
 
