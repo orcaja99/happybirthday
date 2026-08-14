@@ -51,11 +51,19 @@ button{cursor:pointer}
 .photo-section{padding:15px 0 100px}
 .photo-frame{position:relative;max-width:500px;margin:auto;transform:rotate(-1.2deg)}
 .photo-frame2{position:relative;max-width:500px;margin:auto;transform:rotate(1.2deg)}
-.photo-placeholder{
-  aspect-ratio:4/5;background:
-    linear-gradient(145deg,rgba(255,255,255,.25),transparent),
-    repeating-linear-gradient(45deg,#b8aa98 0 3px,#c8bba9 3px 8px);
-  display:grid;place-items:center;box-shadow:0 14px 35px #4b403015;
+.photo-placeholder {
+  width: 100%;
+  overflow: hidden;
+
+  display: block;
+
+  box-shadow: 0 14px 35px #4b403015;
+}
+
+.photo-placeholder img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 .photo-placeholder span{font:11px "DM Mono",monospace;letter-spacing:.25em;text-align:center;color:#fff8}
 .photo-note{display:block;text-align:right;font-size:18px;font-style:italic;margin-top:17px}
