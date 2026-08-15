@@ -302,7 +302,7 @@ window.addEventListener(
 
 const fireflies = document.getElementById("fireflies");
 
-for (let i = 0; i < 60; i++) {
+for (let i = 0; i < 30; i++) {
   const firefly = document.createElement("span");
 
   firefly.className = "firefly";
@@ -380,7 +380,7 @@ for (let i = 0; i < 60; i++) {
 const floatingBalloons = document.getElementById("floatingBalloons");
 
 if (floatingBalloons) {
-  const BALLOON_COUNT = 10;
+  const BALLOON_COUNT = 5;
 
   for (let i = 0; i < BALLOON_COUNT; i++) {
     const balloon = document.createElement("span");
