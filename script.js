@@ -302,7 +302,7 @@ window.addEventListener(
 
 const fireflies = document.getElementById("fireflies");
 
-for (let i = 0; i < 30; i++) {
+for (let i = 0; i < 18; i++) {
   const firefly = document.createElement("span");
 
   firefly.className = "firefly";
