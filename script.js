@@ -98,6 +98,7 @@ const modalText = document.getElementById("modalText");
 function openGift(n){
   modalTitle.textContent = gifts[n][0];
   modalText.textContent = gifts[n][1];
+  document.getElementById("giftImage").src = `pict/gif${n}.gif`;
   modal.classList.add("open");
   modal.setAttribute("aria-hidden","false");
 }
