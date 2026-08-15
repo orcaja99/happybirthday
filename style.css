@@ -190,6 +190,7 @@ button{cursor:pointer}
     0 0 12px #ffe878,
     0 0 22px #ffd84d;
   opacity: 0;
+  will-change: transform, opacity;
   animation:
     firefly-float var(--duration) ease-in-out infinite,
     firefly-glow 2s ease-in-out infinite alternate;
@@ -266,6 +267,7 @@ button{cursor:pointer}
   z-index: 9999;
 
   color: #fff4a8;
+  will-change: transform, opacity;
 
   transform:
     translate(-50%, -50%)

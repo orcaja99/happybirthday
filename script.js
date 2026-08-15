@@ -447,13 +447,20 @@ if (floatingBalloons) {
 
 let lastSparkleX = 0;
 let lastSparkleY = 0;
+let sparkleFrame = false;
 
-document.addEventListener("mousemove", (event) => {
+const sparkleLayer = document.createElement("div");
+sparkleLayer.setAttribute("aria-hidden", "true");
+sparkleLayer.style.position = "fixed";
+sparkleLayer.style.inset = "0";
+sparkleLayer.style.pointerEvents = "none";
+sparkleLayer.style.zIndex = "9999";
+document.body.appendChild(sparkleLayer);
 
+document.addEventListener("pointermove", (event) => {
   const x = event.clientX;
   const y = event.clientY;
 
-  // Jangan terlalu sering membuat sparkle
   const distance = Math.hypot(
     x - lastSparkleX,
     y - lastSparkleY
@@ -466,44 +473,30 @@ document.addEventListener("mousemove", (event) => {
   lastSparkleX = x;
   lastSparkleY = y;
 
-  const sparkle = document.createElement("span");
-
-  sparkle.className = "mouse-sparkle";
-
-  sparkle.style.left = `${x}px`;
-  sparkle.style.top = `${y}px`;
-
-  // Ukuran random
-  const size = 0.5 + Math.random() * 1;
-
-  sparkle.style.transform =
-    `translate(-50%, -50%) scale(${size})`;
-
-  document.body.appendChild(sparkle);
-
-
-  setTimeout(() => {
-    sparkle.remove();
-  }, 700);
-});
-
-
-
-window.addEventListener('DOMContentLoaded', async () => {
-  // Cek apakah user datang dari halaman start.html
-  if (sessionStorage.getItem("birthdayMusicStarted") === "true") {
-    
-    // Hapus jejaknya agar lagu tidak berputar ulang jika halaman di-refresh
-    sessionStorage.removeItem("birthdayMusicStarted");
-    
-    // Putar lagu menggunakan fungsi yang sudah kamu buat
-    try {
-      if (!playing) {
-        await toggleMusic();
-      }
-    } catch (error) {
-      console.log("Autoplay tertahan oleh sistem keamanan browser di halaman baru:", error);
-    }
+  if (sparkleFrame) {
+    return;
   }
+
+  sparkleFrame = true;
+
+  requestAnimationFrame(() => {
+    sparkleFrame = false;
+
+    const sparkle = document.createElement("span");
+    sparkle.className = "mouse-sparkle";
+    sparkle.style.left = `${x}px`;
+    sparkle.style.top = `${y}px`;
+
+    const size = 0.5 + Math.random() * 1;
+    sparkle.style.transform = `translate(-50%, -50%) scale(${size})`;
+
+    sparkleLayer.appendChild(sparkle);
+
+    if (sparkleLayer.children.length > 18) {
+      sparkleLayer.firstElementChild?.remove();
+    }
+
+    setTimeout(() => sparkle.remove(), 700);
+  });
 });
 
