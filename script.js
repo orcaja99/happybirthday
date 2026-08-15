@@ -5,20 +5,90 @@
 
 const candles = [...document.querySelectorAll(".candle")];
 const wish = document.getElementById("wish");
+
 candles.forEach(c => c.addEventListener("click", () => {
+
   c.classList.toggle("lit");
-  const remaining = candles.filter(x => x.classList.contains("lit")).length;
+
+  const remaining = candles.filter(
+    x => x.classList.contains("lit")
+  ).length;
+
   if (!remaining) {
+
     wish.textContent = "Wish made. ✦";
     wish.classList.add("pop");
+
+    createConfetti();
+
   } else {
+
     wish.textContent = "Make a wish.";
+    wish.classList.remove("pop");
+
   }
+
 }));
+
+function createConfetti(target = wish) {
+
+  const colors = [
+    "#fff4a8",
+    "#ffe4b5",
+    "#d8c3a5",
+    "#f4f0e7",
+    "#c9a98a",
+    "#ffffff"
+  ];
+
+  const rect = target.getBoundingClientRect();
+
+  for (let i = 0; i < 45; i++) {
+
+    const confetti = document.createElement("span");
+
+    confetti.className = "confetti";
+
+    confetti.style.left =
+      `${rect.left + rect.width / 2}px`;
+
+    confetti.style.top =
+      `${rect.top + rect.height / 2}px`;
+
+    confetti.style.setProperty(
+      "--x",
+      `${-120 + Math.random() * 240}px`
+    );
+
+    confetti.style.setProperty(
+      "--y",
+      `${-100 + Math.random() * 200}px`
+    );
+
+    confetti.style.setProperty(
+      "--rotate",
+      `${Math.random() * 720 - 360}deg`
+    );
+
+    confetti.style.background =
+      colors[
+        Math.floor(Math.random() * colors.length)
+      ];
+
+    confetti.style.animationDelay =
+      `${Math.random() * 0.15}s`;
+
+    document.body.appendChild(confetti);
+
+    setTimeout(() => {
+      confetti.remove();
+    }, 1600);
+  }
+}
 
 const gifts = {
   1: ["A tiny reminder", "No matter how tired life gets, I hope you always remember how loved and appreciated you are."],
-  2: ["A little promise", "More laughs, more adventures, more memories. There are still so many beautiful days ahead."],
+  2: ["A little promise", "I once promised to make you happy and make things right. So I'm going to keep that promise and do my very best."],
   3: ["One more thing", "Today is yours. Make a wish and enjoy every second of it. ♡"]
 };
 const modal = document.getElementById("giftModal");
@@ -43,13 +113,55 @@ modal.addEventListener("click", e => { if(e.target === modal) document.getElemen
 
 const loveButton = document.getElementById("loveButton");
 const loveStatus = document.getElementById("loveStatus");
+
 loveButton.onclick = () => {
+
   loveButton.classList.add("sent");
-  loveButton.innerHTML = "<span>Love Sent</span><span>✓</span>";
-  loveStatus.textContent = "✦ sent with all my heart";
+
+  loveButton.innerHTML =
+    "<span>Love Sent</span><span>✓</span>";
+
+  loveStatus.textContent =
+    "✦ sent with all my heart";
+
+  createConfetti(loveButton);
+
 };
 
-document.getElementById("specialButton").onclick = () => openGift(3);
+
+
+const videoModal = document.getElementById("videoModal");
+const closeVideoModal = document.getElementById("closeVideoModal");
+const giftVideo = document.getElementById("giftVideo");
+
+document.getElementById("specialButton").onclick = () => {
+
+  videoModal.classList.add("open");
+  videoModal.setAttribute("aria-hidden", "false");
+
+  giftVideo.currentTime = 0;
+
+  giftVideo.play().catch(() => {
+    console.log("Video membutuhkan interaksi user.");
+  });
+};
+
+closeVideoModal.onclick = () => {
+
+  videoModal.classList.remove("open");
+  videoModal.setAttribute("aria-hidden", "true");
+
+  giftVideo.pause();
+  giftVideo.currentTime = 0;
+};
+
+videoModal.addEventListener("click", e => {
+
+  if (e.target === videoModal) {
+    closeVideoModal.click();
+  }
+
+}); 
 
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add("visible"); });
@@ -63,80 +175,150 @@ document.querySelectorAll(".reveal").forEach((el,i) => {
 // MUSIC
 // =========================
 
-const birthdayMusic = document.getElementById("birthdayMusic");
-const musicToggle = document.getElementById("musicToggle");
-const melodyButton = document.getElementById("melodyButton");
-const equalizer = document.getElementById("equalizer");
+// =========================
+// MUSIC
+// =========================
+
+const birthdayMusic =
+  document.getElementById("birthdayMusic");
+
+const melodyButton =
+  document.getElementById("melodyButton");
+
+const equalizer =
+  document.getElementById("equalizer");
 
 let playing = false;
 
+
+// =========================
+// PLAY / PAUSE MUSIC
+// =========================
+
 async function toggleMusic() {
+
   try {
+
     if (playing) {
+
       birthdayMusic.pause();
 
       playing = false;
 
-      musicToggle.textContent = "♪";
-
-      if (melodyButton) {
-        melodyButton.innerHTML =
-          'play the melody <span>♪</span>';
-      }
+      melodyButton.innerHTML =
+        'play the melody <span>♪</span>';
 
       if (equalizer) {
         equalizer.classList.remove("active");
       }
 
     } else {
+
       await birthdayMusic.play();
 
       playing = true;
 
-      musicToggle.textContent = "Ⅱ";
-
-      if (melodyButton) {
-        melodyButton.innerHTML =
-          'pause the melody <span>Ⅱ</span>';
-      }
+      melodyButton.innerHTML =
+        'pause the melody <span>Ⅱ</span>';
 
       if (equalizer) {
         equalizer.classList.add("active");
       }
+
     }
 
   } catch (error) {
-    console.error("Music gagal dimainkan:", error);
+
+    console.error(
+      "Music gagal dimainkan:",
+      error
+    );
+
   }
+
 }
 
 
-// Tombol ♪ di header
-musicToggle.addEventListener("click", toggleMusic);
+// =========================
+// TOMBOL DI HEADER
+// =========================
 
-
-// Tombol "play the melody"
 if (melodyButton) {
-  melodyButton.addEventListener("click", toggleMusic);
+
+  melodyButton.addEventListener(
+    "click",
+    toggleMusic
+  );
+
 }
 
 
-// Kalau lagu selesai
-birthdayMusic.addEventListener("ended", () => {
-  playing = false;
+// =========================
+// KALAU LAGU SELESAI
+// =========================
 
-  musicToggle.textContent = "♪";
+birthdayMusic.addEventListener(
+  "ended",
+  () => {
 
-  if (melodyButton) {
+    playing = false;
+
     melodyButton.innerHTML =
       'play the melody <span>♪</span>';
-  }
 
-  if (equalizer) {
-    equalizer.classList.remove("active");
-  }
-});
+    if (equalizer) {
+      equalizer.classList.remove("active");
+    }
 
+  }
+);
+
+
+// =========================
+// AUTOPLAY DARI START PAGE
+// =========================
+
+window.addEventListener(
+  "DOMContentLoaded",
+  async () => {
+
+    const shouldStart =
+      sessionStorage.getItem(
+        "birthdayMusicStarted"
+      ) === "true";
+
+    if (!shouldStart) {
+      return;
+    }
+
+    sessionStorage.removeItem(
+      "birthdayMusicStarted"
+    );
+
+    try {
+
+      await birthdayMusic.play();
+
+      playing = true;
+
+      melodyButton.innerHTML =
+        'pause the melody <span>Ⅱ</span>';
+
+      if (equalizer) {
+        equalizer.classList.add("active");
+      }
+
+    } catch (error) {
+
+      console.log(
+        "Autoplay ditahan browser:",
+        error
+      );
+
+    }
+
+  }
+);
 
 
 // =========================
@@ -349,3 +531,4 @@ window.addEventListener('DOMContentLoaded', async () => {
     }
   }
 });
+

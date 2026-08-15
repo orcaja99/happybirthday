@@ -17,8 +17,14 @@ button,a{font:inherit;color:inherit}
 button{cursor:pointer}
 .page{width:min(100%,720px);margin:auto;padding:0 34px;overflow:hidden}
 .topbar{
-  height:74px;display:flex;align-items:center;justify-content:space-between;
-  border-bottom:1px solid var(--line);font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.08em;
+  height:74px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--line);
+  font-family:"DM Mono",monospace;
+  font-size:10px;
+  letter-spacing:.08em;
 }
 .back{text-decoration:none;color:var(--muted)}
 .brand{position:absolute;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.22em}
@@ -461,3 +467,101 @@ button{cursor:pointer}
     );
 }
 
+.header-melody {
+  border: 0;
+  background: none;
+
+  padding: 4px 0;
+
+  color: var(--muted);
+
+  font: 9px "DM Mono", monospace;
+
+  letter-spacing: .08em;
+
+  cursor: pointer;
+
+  transition:
+    color .3s ease,
+    transform .3s ease;
+}
+
+.header-melody:hover {
+  color: var(--paper);
+  transform: translateY(-1px);
+}
+
+.header-melody span {
+  font-size: 13px;
+  margin-left: 5px;
+}
+
+.confetti {
+  position: fixed;
+  width: 7px;
+  height: 11px;
+  border-radius: 2px;
+
+  pointer-events: none;
+  z-index: 20;
+
+  transform: translate(-50%, -50%);
+
+  animation: confetti-pop 1.5s cubic-bezier(.2,.8,.3,1) forwards;
+}
+
+@keyframes confetti-pop {
+
+  0% {
+    opacity: 1;
+    transform:
+      translate(-50%, -50%)
+      scale(.4)
+      rotate(0deg);
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translate(
+        calc(-50% + var(--x)),
+        calc(-50% + var(--y))
+      )
+      rotate(var(--rotate))
+      scale(1);
+  }
+}
+
+/* =========================
+   VIDEO KADO SPESIAL
+   ========================= */
+
+.video-modal-card {
+  max-width: 520px;
+}
+
+.gift-video {
+  width: 100%;
+  margin: 25px auto;
+}
+
+.gift-video video {
+  display: block;
+  width: 100%;
+  max-height: 500px;
+  object-fit: contain;
+  margin: auto;
+}
+.video-caption {
+  margin: 18px auto 5px;
+  max-width: 400px;
+  font-size: 18px;
+  line-height: 1.5;
+  font-style: italic;
+  color: var(--muted);
+}
