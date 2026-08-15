@@ -98,7 +98,11 @@ const modalText = document.getElementById("modalText");
 function openGift(n){
   modalTitle.textContent = gifts[n][0];
   modalText.textContent = gifts[n][1];
-  document.getElementById("giftImage").src = `pict/gif${n}.gif`;
+  const giftImage = document.getElementById("giftImage");
+  giftImage.src = "";
+  setTimeout(() => {
+    giftImage.src = `pict/gif${n}.gif`;
+  }, 0);
   modal.classList.add("open");
   modal.setAttribute("aria-hidden","false");
 }
