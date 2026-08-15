@@ -158,6 +158,8 @@ closeVideoModal.onclick = () => {
 
   giftVideo.pause();
   giftVideo.currentTime = 0;
+  
+  startMusic();
 };
 
 videoModal.addEventListener("click", e => {
@@ -166,6 +168,19 @@ videoModal.addEventListener("click", e => {
     closeVideoModal.click();
   }
 
+});
+
+// Video and music sync
+giftVideo.addEventListener("play", () => {
+  stopMusic();
+});
+
+giftVideo.addEventListener("pause", () => {
+  startMusic();
+});
+
+giftVideo.addEventListener("ended", () => {
+  startMusic();
 }); 
 
 const observer = new IntersectionObserver(entries => {
