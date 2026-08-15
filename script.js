@@ -190,66 +190,69 @@ const equalizer =
 
 let playing = false;
 
+async function setMusicState(isPlaying) {
+  playing = isPlaying;
 
-// =========================
-// PLAY / PAUSE MUSIC
-// =========================
-
-async function toggleMusic() {
-
-  try {
-
-    if (playing) {
-
-      birthdayMusic.pause();
-
-      playing = false;
-
-      melodyButton.innerHTML =
-        'play the melody <span>♪</span>';
-
-      if (equalizer) {
-        equalizer.classList.remove("active");
-      }
-
-    } else {
-
-      await birthdayMusic.play();
-
-      playing = true;
-
-      melodyButton.innerHTML =
-        'pause the melody <span>Ⅱ</span>';
-
-      if (equalizer) {
-        equalizer.classList.add("active");
-      }
-
-    }
-
-  } catch (error) {
-
-    console.error(
-      "Music gagal dimainkan:",
-      error
-    );
-
+  if (melodyButton) {
+    melodyButton.innerHTML = isPlaying
+      ? 'pause the melody <span>Ⅱ</span>'
+      : 'play the melody <span>♪</span>';
   }
 
+  if (equalizer) {
+    equalizer.classList.toggle("active", isPlaying);
+  }
 }
 
+async function startMusic() {
+  if (!birthdayMusic || playing) {
+    return;
+  }
 
-// =========================
-// TOMBOL DI HEADER
-// =========================
+  try {
+    await birthdayMusic.play();
+    setMusicState(true);
+  } catch (error) {
+    console.log(
+      "Music blocked until the next user gesture on mobile.",
+      error
+    );
+  }
+}
+
+async function stopMusic() {
+  if (!birthdayMusic) {
+    return;
+  }
+
+  birthdayMusic.pause();
+  setMusicState(false);
+}
+
+async function toggleMusic() {
+  if (playing) {
+    await stopMusic();
+    return;
+  }
+
+  await startMusic();
+}
 
 if (melodyButton) {
+  melodyButton.addEventListener("click", async (event) => {
+    event.preventDefault();
+    await toggleMusic();
+  });
 
-  melodyButton.addEventListener(
-    "click",
-    toggleMusic
+  document.addEventListener(
+    "pointerdown",
+    () => {
+      if (!playing) {
+        startMusic();
+      }
+    },
+    { once: true }
   );
-
 }
 
 
@@ -260,16 +263,7 @@ if (melodyButton) {
 birthdayMusic.addEventListener(
   "ended",
   () => {
-
-    playing = false;
-
-    melodyButton.innerHTML =
-      'play the melody <span>♪</span>';
-
-    if (equalizer) {
-      equalizer.classList.remove("active");
-    }
-
+    setMusicState(false);
   }
 );
 
@@ -281,42 +275,23 @@ birthdayMusic.addEventListener(
 window.addEventListener(
   "DOMContentLoaded",
   async () => {
-
     const shouldStart =
-      sessionStorage.getItem(
-        "birthdayMusicStarted"
-      ) === "true";
+      sessionStorage.getItem("birthdayMusicStarted") === "true";
 
     if (!shouldStart) {
       return;
     }
 
-    sessionStorage.removeItem(
-      "birthdayMusicStarted"
-    );
+    sessionStorage.removeItem("birthdayMusicStarted");
 
     try {
-
-      await birthdayMusic.play();
-
-      playing = true;
-
-      melodyButton.innerHTML =
-        'pause the melody <span>Ⅱ</span>';
-
-      if (equalizer) {
-        equalizer.classList.add("active");
-      }
-
+      await startMusic();
     } catch (error) {
-
       console.log(
-        "Autoplay ditahan browser:",
+        "Autoplay ditahan browser; tunggu klik user:",
         error
       );
-
     }
-
   }
 );
 

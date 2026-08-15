@@ -675,34 +675,23 @@
 
     startButton.addEventListener(
       "click",
-      function () {
-        /*
-         * Simpan status bahwa user sudah siap memutar musik.
-         */
+      async function () {
         sessionStorage.setItem(
           "birthdayMusicStarted",
           "true"
         );
 
-
-        /*
-         * Simpan status bahwa musik
-         * sudah dimulai.
-         */
-
-        sessionStorage.setItem(
-          "birthdayMusicStarted",
-          "true"
-        );
-
-
-        /*
-         * Pindah ke halaman utama.
-         */
+        try {
+          await birthdayMusic.play();
+        } catch (error) {
+          console.log(
+            "Music start is blocked before navigation; waiting for a later user gesture.",
+            error
+          );
+        }
 
         window.location.href =
           "main.html";
-
       }
     );
 
