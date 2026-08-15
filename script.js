@@ -95,14 +95,52 @@ const modal = document.getElementById("giftModal");
 const modalTitle = document.getElementById("modalTitle");
 const modalText = document.getElementById("modalText");
 
+// Preload GIFs
+const gifCache = {};
+function preloadGif(gifNumber) {
+  if (gifCache[gifNumber]) return;
+  
+  const img = new Image();
+  img.src = `pict/gif${gifNumber}.gif`;
+  gifCache[gifNumber] = img;
+}
+
+// Preload all GIFs when page loads
+window.addEventListener("load", () => {
+  for (let i = 1; i <= 3; i++) {
+    preloadGif(i);
+  }
+});
+
 function openGift(n){
   modalTitle.textContent = gifts[n][0];
   modalText.textContent = gifts[n][1];
   const giftImage = document.getElementById("giftImage");
+  
+  // Show loading state
+  giftImage.style.opacity = "0.5";
+  giftImage.style.transition = "opacity 0.3s ease";
+  
+  // Preload if not already cached
+  preloadGif(n);
+  
   giftImage.src = "";
   setTimeout(() => {
-    giftImage.src = `pict/gif${n}.gif`;
+    giftImage.src = `pict/gif${n}.gif?t=${Date.now()}`;
+    
+    // Handle load success
+    giftImage.onload = () => {
+      giftImage.style.opacity = "1";
+    };
+    
+    // Handle load error
+    giftImage.onerror = () => {
+      giftImage.style.opacity = "1";
+      giftImage.alt = "Image failed to load - please check your connection";
+      console.error(`Failed to load gif${n}.gif`);
+    };
   }, 0);
+  
   modal.classList.add("open");
   modal.setAttribute("aria-hidden","false");
 }
