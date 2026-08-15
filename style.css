@@ -68,6 +68,7 @@ button{cursor:pointer}
   letter-spacing: .12em;
   text-transform: uppercase;
   font-weight: 700;
+  color: var(--paper);
 }
 .hero h1{font-size:clamp(70px,15vw,120px);line-height:1.3;font-weight:500;margin:0 0 54px;letter-spacing:-.055em}
 .hero h1 em{font-weight:400;letter-spacing:-.055em}
@@ -134,7 +135,7 @@ button{cursor:pointer}
 .footer p{font-size:20px;font-style:italic;margin:0 0 5px}.footer strong{font-size:42px;font-weight:500}
 .dots{margin-top:35px;color:var(--muted);letter-spacing:12px}
 .special{text-align:center;border-top:1px solid var(--line);padding:100px 0 120px}
-.open-special{margin-top:30px;border:1px solid var(--ink);background:transparent;padding:13px 24px;font:10px "DM Mono",monospace;text-transform:uppercase;letter-spacing:.1em}
+.open-special{margin-top:30px;border:1px solid var(--ink);background:var(--cream);padding:13px 24px;font:10px "DM Mono",monospace;text-transform:uppercase;letter-spacing:.1em;color:var(--ink)}
 .modal{position:fixed;inset:0;background:#25231f88;display:grid;place-items:center;padding:25px;opacity:0;pointer-events:none;transition:.3s;z-index:10}
 .modal.open{opacity:1;pointer-events:auto}
 .modal-card{color: var(--ink);position:relative;background:var(--paper);max-width:430px;width:100%;padding:60px 40px;text-align:center;box-shadow:0 20px 70px #0003}
