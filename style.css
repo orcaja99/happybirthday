@@ -128,7 +128,7 @@ button{cursor:pointer}
 .gifts{text-align:center;padding:60px 0 90px;border-top:1px solid var(--line)}
 .gifts h2,.special h2{font-size:48px;font-weight:500;margin:0 0 15px}
 .ornament{font-size:14px;letter-spacing:4px;color:var(--accent);margin-bottom:40px}
-.gift-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.gift-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
 .gift{border:1px solid var(--line);background:var(--cream);min-height:180px;padding:20px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;transition:.3s}
 .gift:hover{background:var(--cream);transform:translateY(-5px)}
 .modal-gift-image{display:block;max-width:250px;max-height:250px;margin:20px auto;border-radius:8px;object-fit:contain;opacity:1;transition:opacity 0.3s ease;background:#f0f0f0;min-height:150px}
