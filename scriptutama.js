@@ -278,3 +278,4 @@ window.addEventListener('DOMContentLoaded', async () => {
   }
 });
 
+console.log("Script utama.js telah dimuat dan dijalankan.");
